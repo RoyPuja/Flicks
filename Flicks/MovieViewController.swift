@@ -13,6 +13,7 @@ import MBProgressHUD
 class MovieViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     var movies : [NSDictionary]?
+    var endpoint : String!
     
     @IBOutlet weak var networkError: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -32,11 +33,12 @@ class MovieViewController: UIViewController,UITableViewDataSource,UITableViewDel
                 getMovieData()
         networkError.isHidden=true
     }
+    
+    
 
     func getMovieData(){
-        
     let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-    let url = URL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+    let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint!)?api_key=\(apiKey)")
     let request = URLRequest(url: url!)
     let session = URLSession(
     configuration: URLSessionConfiguration.default,
@@ -50,26 +52,19 @@ class MovieViewController: UIViewController,UITableViewDataSource,UITableViewDel
     MBProgressHUD.hide(for: self.view, animated: true)
     
     if let data = data {
-   // if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
         let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
     //print("responseDictionary: \(responseDictionary)")
-    
     // Recall there are two fields in the response dictionary, 'meta' and 'response'.
     // This is how we get the 'response' field
     self.movies=responseDictionary["results"] as! [NSDictionary]
-    
     self.tableView.reloadData()
-        self.networkError.isHidden=true
+    self.networkError.isHidden=true
         }
     else if (error != nil) {
         // Show the network error view
         self.networkError.isHidden = false;
         //onDataLoad();
         }
-    // This is where you will store the returned array of posts in your posts property
-    // self.feeds = responseFieldDictionary["posts"] as! [NSDictionary]
-    
-        
     });
     task.resume()
 
@@ -106,6 +101,8 @@ let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: index
         
         cell.titleLabel.text=title
         cell.overviewLabel.text=overview
+       
+        
         
             return cell
         
@@ -135,6 +132,7 @@ let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: index
         
         let movieDetailViewController = segue.destination as! MovieViewDetailController
         movieDetailViewController.movie = movie;
+        //tabBarController?.tabBar.isHidden = true
     }
     
 

@@ -16,9 +16,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let nowPlayingNavigationViewController = storyboard.instantiateViewController(withIdentifier: "MoviesNavigationController") as! UINavigationController
+        let nowPlayingViewController = nowPlayingNavigationViewController.topViewController as! MovieViewController
+        nowPlayingViewController.endpoint = "now_playing"
+        nowPlayingNavigationViewController.tabBarItem.title = "Now Playing"
+        nowPlayingNavigationViewController.tabBarItem.image = UIImage(named: "now_playing-1")
+        
+        let topRatedNavigationViewController = storyboard.instantiateViewController(withIdentifier: "MoviesNavigationController") as! UINavigationController
+        let topRatedController = topRatedNavigationViewController.topViewController as! MovieViewController
+        topRatedController.endpoint = "top_rated"
+        topRatedNavigationViewController.tabBarItem.title = "Top Rated"
+        topRatedNavigationViewController.tabBarItem.image = UIImage(named: "top_rated-1")
+        let tabBarController: UITabBarController = UITabBarController()
+        tabBarController.viewControllers = [nowPlayingNavigationViewController, topRatedNavigationViewController]
+        
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        
+        customAppearance()
+        
         return true
     }
-
+    
+    func customAppearance(){
+        let navigationBarAppearace = UINavigationBar.appearance()
+       // navigationBarAppearace.barTintColor = UIColor("#3b5998")
+        //navigationBarAppearace.tintColor = UIColor("#ffffff")
+        //navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName : UIColor("#ffffff")]
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
