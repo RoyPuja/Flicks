@@ -10,6 +10,8 @@ import UIKit
 
 class MovieViewDetailController: UIViewController {
 
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var posterImageView: UIImageView!
     
@@ -20,18 +22,18 @@ class MovieViewDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let title = movie["title"] as? String
-        titleLabel.text=title
-        let overview=movie["overview"] as! String
-        overviewLabel.text=overview
-        let base_url="https://image.tmdb.org/t/p/w500"
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: infoView.frame.origin.y + infoView.frame.height)
+        
+        titleLabel.text = movie["title"] as?  String
+        
+        overviewLabel.text = movie["overview"] as?  String
+        overviewLabel.sizeToFit()
+        
         if let posterPath = movie["poster_path"] as? String {
-            
-            let imageUrl = URL(string: base_url + posterPath)
-            
-            posterImageView.setImageWith(imageUrl!)
+            let baseURL = "http://image.tmdb.org/t/p/w500"
+            let imageURL = URL(string: baseURL + posterPath)
+            posterImageView.setImageWith(imageURL!)
         }
-
 
 
         // Do any additional setup after loading the view.
@@ -51,9 +53,7 @@ class MovieViewDetailController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        let cell = sender as! UITableViewCell
-       // let indexPath = tableview
-        
+               
     }
     
 

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "92A97DDBC5DC65BF9BE70255163C81D4"
-               BuildableName = "Pods_Flicks.framework"
-               BlueprintName = "Pods-Flicks"
+               BlueprintIdentifier = "EC693FAB1021B3846F7034F8AA954D57"
+               BuildableName = "ACProgressHUD_Swift.framework"
+               BlueprintName = "ACProgressHUD-Swift"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "92A97DDBC5DC65BF9BE70255163C81D4"
-            BuildableName = "Pods_Flicks.framework"
-            BlueprintName = "Pods-Flicks"
+            BlueprintIdentifier = "EC693FAB1021B3846F7034F8AA954D57"
+            BuildableName = "ACProgressHUD_Swift.framework"
+            BlueprintName = "ACProgressHUD-Swift"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
