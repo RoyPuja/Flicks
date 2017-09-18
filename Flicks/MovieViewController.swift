@@ -32,8 +32,12 @@ class MovieViewController: UIViewController,UITableViewDataSource,UITableViewDel
         
                 getMovieData()
         networkError.isHidden=true
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
     
 
     func getMovieData(){
@@ -132,7 +136,7 @@ let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: index
         
         let movieDetailViewController = segue.destination as! MovieViewDetailController
         movieDetailViewController.movie = movie;
-        //tabBarController?.tabBar.isHidden = true
+        
     }
     
 

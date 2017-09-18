@@ -34,10 +34,12 @@ class MovieViewDetailController: UIViewController {
             let imageURL = URL(string: baseURL + posterPath)
             posterImageView.setImageWith(imageURL!)
         }
-
+ self.tabBarController?.tabBar.isHidden = true
 
         // Do any additional setup after loading the view.
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
